@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"math"
+	"strconv"
 	"strings"
 )
 
@@ -57,7 +58,8 @@ func bitsToBase64(bits []bool) []byte {
 	for i := 0; i < limit; i++ {
 		sum := byte(0)
 		for j := 0; j < 6; j++ {
-			sum += bitToPosition(getBit(bits, i+j), uint8(5-j))
+			temp := bitToPosition(getBit(bits, i*6+j), uint8(5-j))
+			sum += temp
 		}
 		base64[i] = sum
 	}
@@ -72,7 +74,7 @@ func printBase64(base64 []byte) {
 		} else if v <= 51 {
 			chars[i] = string(97 + v - 26)
 		} else if v <= 61 {
-			chars[i] = string(v)
+			chars[i] = strconv.Itoa(int(v - 52))
 		} else if v == 62 {
 			chars[i] = "+"
 		} else {
@@ -84,12 +86,10 @@ func printBase64(base64 []byte) {
 
 func run() {
 	orig := "49276d206b696c6c696e6720796f757220627261696e206c696b65206120706f69736f6e6f7573206d757368726f6f6d"
-	fmt.Println(orig)
 	bytes := []byte(orig)
 	hex := bytesToHex(bytes)
 	bits := hexToBits(hex)
 	base64 := bitsToBase64(bits)
-	fmt.Println(base64)
 	printBase64(base64)
 }
 
