@@ -84,15 +84,15 @@ func printBase64(base64 []byte) {
 	fmt.Println(strings.Join(chars, ""))
 }
 
-func run() {
-	orig := "49276d206b696c6c696e6720796f757220627261696e206c696b65206120706f69736f6e6f7573206d757368726f6f6d"
+func hex2base64(orig string) []byte {
 	bytes := []byte(orig)
 	hex := bytesToHex(bytes)
 	bits := hexToBits(hex)
 	base64 := bitsToBase64(bits)
-	printBase64(base64)
+	return base64
 }
 
-func main() {
-	run()
+func runHex2base64() {
+	orig := "49276d206b696c6c696e6720796f757220627261696e206c696b65206120706f69736f6e6f7573206d757368726f6f6d"
+	printBase64(hex2base64(orig))
 }
