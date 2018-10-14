@@ -41,7 +41,7 @@ func scoreString(str string) (sum int) {
 	return
 }
 
-func findSingleByteXor(hex []byte) string {
+func findSingleByteXor(hex []byte) (string, int) {
 	maxScore := -1
 	var bestGuessString string
 	for char := 0; char < 256; char++ {
@@ -58,11 +58,12 @@ func findSingleByteXor(hex []byte) string {
 			maxScore = xorScore
 		}
 	}
-	return bestGuessString
+	return bestGuessString, maxScore
 }
 
 func runSingleByteXorCipher() {
 	hexBytes := []byte("1b37373331363f78151b7f2b783431333d78397828372d363c78373e783a393b3736")
 	hex := bytesToHex(hexBytes)
-	fmt.Println(findSingleByteXor(hex))
+	str, _ := findSingleByteXor(hex)
+	fmt.Println(str)
 }
