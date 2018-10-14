@@ -49,8 +49,8 @@ func findSingleByteXor(hex []byte) (string, int) {
 			byte(char >> 4),
 			byte(char % 16),
 		}
-		xorBytes := makeOfN(bytes, len(hex))
-		xorredHex := hexXor(hex, xorBytes)
+		xorByteArray := makeOfN(bytes, len(hex))
+		xorredHex := xorBytes(hex, xorByteArray)
 		xorredString := hexToString(xorredHex)
 		xorScore := scoreString(xorredString)
 		if xorScore > maxScore {

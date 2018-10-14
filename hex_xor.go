@@ -6,7 +6,7 @@ import (
 	"strings"
 )
 
-func hexXor(orig1, orig2 []byte) []byte {
+func xorBytes(orig1, orig2 []byte) []byte {
 	bytes1 := bytesToHex(orig1)
 	bytes2 := bytesToHex(orig2)
 	bytes3 := make([]byte, len(bytes1))
@@ -32,6 +32,6 @@ func printHex(hex []byte) {
 func runHexXor() {
 	orig1 := []byte("1c0111001f010100061a024b53535009181c")
 	orig2 := []byte("686974207468652062756c6c277320657965")
-	xordvalue := hexXor(orig1, orig2)
+	xordvalue := xorBytes(orig1, orig2)
 	printHex(xordvalue)
 }
